@@ -1,0 +1,7 @@
+README.md
+setup.py
+User_Churn_Prediction_System.egg-info/PKG-INFO
+User_Churn_Prediction_System.egg-info/SOURCES.txt
+User_Churn_Prediction_System.egg-info/dependency_links.txt
+User_Churn_Prediction_System.egg-info/requires.txt
+User_Churn_Prediction_System.egg-info/top_level.txt
