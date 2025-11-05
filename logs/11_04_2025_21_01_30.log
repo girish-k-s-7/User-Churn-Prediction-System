@@ -1,0 +1,2 @@
+[ 2025-11-04 21:01:30,638 ] 5 root - INFO - \u2705 Logging test using root logger
+[ 2025-11-04 21:01:30,638 ] 6 src.logger - INFO - \u2705 Logging test using named logger

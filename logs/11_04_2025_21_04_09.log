@@ -1,0 +1,7 @@
+[ 2025-11-04 21:04:09,072 ] 6 root - INFO - Starting exception test...
+[ 2025-11-04 21:04:09,072 ] 9 root - ERROR - An error occurred!
+Traceback (most recent call last):
+  File "C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\test_exception.py", line 7, in <module>
+    result = 10 / 0  # This will cause a ZeroDivisionError
+             ~~~^~~
+ZeroDivisionError: division by zero

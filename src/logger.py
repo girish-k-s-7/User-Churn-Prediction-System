@@ -2,11 +2,12 @@ import logging
 import os
 from datetime import datetime
 
-# Create log folder dynamically
+# Create logs directory dynamically
 LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
 logs_path = os.path.join(os.getcwd(), "logs")
 os.makedirs(logs_path, exist_ok=True)
 
+# Define log file path
 LOG_FILE_PATH = os.path.join(logs_path, LOG_FILE)
 
 # Configure logging
@@ -16,12 +17,5 @@ logging.basicConfig(
     level=logging.INFO,
 )
 
-# Create a logger object
-logger = logging.getLogger()
-
-# Add a console handler (optional but helpful)
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.INFO)
-console_formatter = logging.Formatter("[ %(asctime)s ] %(message)s")
-console_handler.setFormatter(console_formatter)
-logger.addHandler(console_handler)
+# Optional: Create a logger instance
+logger = logging.getLogger(__name__)
