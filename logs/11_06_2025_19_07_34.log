@@ -1,0 +1,22 @@
+[ 2025-11-06 19:07:34,877 ] 78 root - INFO -  Running Data Ingestion Pipeline...
+[ 2025-11-06 19:07:34,877 ] 27 root - INFO -  Starting Data Ingestion Process  
+[ 2025-11-06 19:07:34,877 ] 35 root - INFO - Reading dataset from: C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\notebooks\data\Telco-Customer-Churn.csv
+[ 2025-11-06 19:07:34,921 ] 38 root - INFO - Data successfully loaded into DataFrame
+[ 2025-11-06 19:07:34,921 ] 41 root - INFO - Dataset shape: (7043, 21)
+[ 2025-11-06 19:07:34,921 ] 42 root - INFO - Columns: ['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Churn']
+[ 2025-11-06 19:07:34,954 ] 53 root - INFO - Raw data saved at: artifacts\raw_data.csv
+[ 2025-11-06 19:07:34,954 ] 56 root - INFO - Initiating train-test split...
+[ 2025-11-06 19:07:34,996 ] 61 root - INFO -  Train and test data saved successfully
+[ 2025-11-06 19:07:34,996 ] 63 root - INFO -  Data Ingestion Completed Successfully  
+[ 2025-11-06 19:07:34,997 ] 84 root - INFO -  Data Ingestion Completed Successfully
+[ 2025-11-06 19:07:34,998 ] 96 root - INFO - \U0001f680 Starting Data Ingestion Manually...
+[ 2025-11-06 19:07:34,998 ] 27 root - INFO -  Starting Data Ingestion Process  
+[ 2025-11-06 19:07:34,998 ] 35 root - INFO - Reading dataset from: C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\notebooks\data\Telco-Customer-Churn.csv
+[ 2025-11-06 19:07:35,027 ] 38 root - INFO - Data successfully loaded into DataFrame
+[ 2025-11-06 19:07:35,028 ] 41 root - INFO - Dataset shape: (7043, 21)
+[ 2025-11-06 19:07:35,028 ] 42 root - INFO - Columns: ['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Churn']
+[ 2025-11-06 19:07:35,066 ] 53 root - INFO - Raw data saved at: artifacts\raw_data.csv
+[ 2025-11-06 19:07:35,067 ] 56 root - INFO - Initiating train-test split...
+[ 2025-11-06 19:07:35,101 ] 61 root - INFO -  Train and test data saved successfully
+[ 2025-11-06 19:07:35,101 ] 63 root - INFO -  Data Ingestion Completed Successfully  
+[ 2025-11-06 19:07:35,103 ] 107 root - INFO - \U0001f3af Data Ingestion Completed Successfully
