@@ -1,0 +1,16 @@
+[ 2025-11-06 19:28:51,529 ] 27 root - INFO -  Starting Data Ingestion Process  
+[ 2025-11-06 19:28:51,529 ] 35 root - INFO - Reading dataset from: C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\notebooks\data\Telco-Customer-Churn.csv
+[ 2025-11-06 19:28:51,570 ] 38 root - INFO - Data successfully loaded into DataFrame
+[ 2025-11-06 19:28:51,570 ] 41 root - INFO - Dataset shape: (7043, 21)
+[ 2025-11-06 19:28:51,570 ] 42 root - INFO - Columns: ['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Churn']
+[ 2025-11-06 19:28:51,610 ] 53 root - INFO - Raw data saved at: artifacts\raw_data.csv
+[ 2025-11-06 19:28:51,610 ] 56 root - INFO - Initiating train-test split...
+[ 2025-11-06 19:28:51,653 ] 61 root - INFO -  Train and test data saved successfully
+[ 2025-11-06 19:28:51,654 ] 63 root - INFO -  Data Ingestion Completed Successfully  
+[ 2025-11-06 19:28:51,655 ] 16 root - INFO - Starting the Data Transformation process
+[ 2025-11-06 19:28:51,728 ] 21 root - INFO - Train and Test data loaded successfully
+[ 2025-11-06 19:28:51,754 ] 35 root - INFO - Categorical Columns: ['customerID', 'gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'TotalCharges']
+[ 2025-11-06 19:28:51,754 ] 36 root - INFO - Numerical Columns: ['SeniorCitizen', 'tenure', 'MonthlyCharges']
+[ 2025-11-06 19:28:52,460 ] 12 root - INFO - Object saved successfully at artifacts\preprocessor.pkl
+[ 2025-11-06 19:28:52,460 ] 53 root - INFO - Preprocessor saved at artifacts\preprocessor.pkl
+[ 2025-11-06 19:28:52,460 ] 55 root - INFO - Data Transformation completed successfully
