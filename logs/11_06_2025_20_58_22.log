@@ -1,0 +1,30 @@
+[ 2025-11-06 20:58:22,035 ] 27 root - INFO -  Starting Data Ingestion Process  
+[ 2025-11-06 20:58:22,035 ] 35 root - INFO - Reading dataset from: C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\notebooks\data\Telco-Customer-Churn.csv
+[ 2025-11-06 20:58:22,066 ] 38 root - INFO - Data successfully loaded into DataFrame
+[ 2025-11-06 20:58:22,066 ] 41 root - INFO - Dataset shape: (7043, 21)
+[ 2025-11-06 20:58:22,066 ] 42 root - INFO - Columns: ['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Churn']
+[ 2025-11-06 20:58:22,128 ] 53 root - INFO - Raw data saved at: artifacts\raw_data.csv
+[ 2025-11-06 20:58:22,128 ] 56 root - INFO - Initiating train-test split...
+[ 2025-11-06 20:58:22,167 ] 61 root - INFO -  Train and test data saved successfully
+[ 2025-11-06 20:58:22,167 ] 63 root - INFO -  Data Ingestion Completed Successfully  
+[ 2025-11-06 20:58:22,169 ] 16 root - INFO - Starting the Data Transformation process
+[ 2025-11-06 20:58:22,238 ] 21 root - INFO - Train and Test data loaded successfully
+[ 2025-11-06 20:58:22,242 ] 35 root - INFO - Categorical Columns: ['customerID', 'gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'TotalCharges']
+[ 2025-11-06 20:58:22,242 ] 36 root - INFO - Numerical Columns: ['SeniorCitizen', 'tenure', 'MonthlyCharges']
+[ 2025-11-06 20:58:22,980 ] 15 root - INFO -  Object saved at artifacts\preprocessor.pkl
+[ 2025-11-06 20:58:22,981 ] 53 root - INFO - Preprocessor saved at artifacts\preprocessor.pkl
+[ 2025-11-06 20:58:22,981 ] 55 root - INFO - Data Transformation completed successfully
+[ 2025-11-06 20:58:22,982 ] 27 root - INFO - Model Training Started
+[ 2025-11-06 20:58:23,209 ] 34 root - INFO - Data shapes -> X_train: (5634, 10978), X_test: (1409, 10978)
+[ 2025-11-06 20:58:23,209 ] 34 root - INFO -  Training and evaluating model: Logistic Regression
+[ 2025-11-06 20:58:26,832 ] 63 root - INFO - Logistic Regression \u2192 F1: 0.6444 | Acc: 0.8261
+[ 2025-11-06 20:58:26,833 ] 34 root - INFO -  Training and evaluating model: Decision Tree
+[ 2025-11-06 20:58:30,576 ] 63 root - INFO - Decision Tree \u2192 F1: 0.5296 | Acc: 0.7743
+[ 2025-11-06 20:58:30,576 ] 34 root - INFO -  Training and evaluating model: Random Forest
+[ 2025-11-06 20:58:50,442 ] 63 root - INFO - Random Forest \u2192 F1: 0.5437 | Acc: 0.7963
+[ 2025-11-06 20:58:50,442 ] 34 root - INFO -  Training and evaluating model: Gradient Boosting
+[ 2025-11-06 21:04:06,458 ] 63 root - INFO - Gradient Boosting \u2192 F1: 0.5957 | Acc: 0.8141
+[ 2025-11-06 21:04:06,458 ] 46 root - INFO - Model Report: {'Logistic Regression': {'accuracy': 0.8261178140525195, 'precision': 0.7025316455696202, 'recall': 0.5951742627345844, 'f1_score': 0.6444121915820029}, 'Decision Tree': {'accuracy': 0.7743080198722498, 'precision': 0.5907590759075908, 'recall': 0.47989276139410186, 'f1_score': 0.5295857988165681}, 'Random Forest': {'accuracy': 0.7963094393186657, 'precision': 0.66796875, 'recall': 0.4584450402144772, 'f1_score': 0.5437201907790143}, 'Gradient Boosting': {'accuracy': 0.8140525195173882, 'precision': 0.7018181818181818, 'recall': 0.517426273458445, 'f1_score': 0.595679012345679}}
+[ 2025-11-06 21:04:06,458 ] 53 root - INFO - Best Model: Logistic Regression | F1-Score: 0.6444
+[ 2025-11-06 21:04:11,474 ] 15 root - INFO -  Object saved at artifacts\model.pkl
+[ 2025-11-06 21:04:11,475 ] 60 root - INFO - Model saved at: artifacts\model.pkl

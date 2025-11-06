@@ -1,0 +1,52 @@
+[ 2025-11-06 20:53:25,422 ] 27 root - INFO -  Starting Data Ingestion Process  
+[ 2025-11-06 20:53:25,422 ] 35 root - INFO - Reading dataset from: C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\notebooks\data\Telco-Customer-Churn.csv
+[ 2025-11-06 20:53:25,446 ] 38 root - INFO - Data successfully loaded into DataFrame
+[ 2025-11-06 20:53:25,446 ] 41 root - INFO - Dataset shape: (7043, 21)
+[ 2025-11-06 20:53:25,446 ] 42 root - INFO - Columns: ['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges', 'Churn']
+[ 2025-11-06 20:53:25,518 ] 53 root - INFO - Raw data saved at: artifacts\raw_data.csv
+[ 2025-11-06 20:53:25,519 ] 56 root - INFO - Initiating train-test split...
+[ 2025-11-06 20:53:25,554 ] 61 root - INFO -  Train and test data saved successfully
+[ 2025-11-06 20:53:25,554 ] 63 root - INFO -  Data Ingestion Completed Successfully  
+[ 2025-11-06 20:53:25,556 ] 16 root - INFO - Starting the Data Transformation process
+[ 2025-11-06 20:53:25,625 ] 21 root - INFO - Train and Test data loaded successfully
+[ 2025-11-06 20:53:25,628 ] 35 root - INFO - Categorical Columns: ['customerID', 'gender', 'Partner', 'Dependents', 'PhoneService', 'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'Contract', 'PaperlessBilling', 'PaymentMethod', 'TotalCharges']
+[ 2025-11-06 20:53:25,628 ] 36 root - INFO - Numerical Columns: ['SeniorCitizen', 'tenure', 'MonthlyCharges']
+[ 2025-11-06 20:53:26,235 ] 16 root - INFO - Object saved successfully at artifacts\preprocessor.pkl
+[ 2025-11-06 20:53:26,236 ] 53 root - INFO - Preprocessor saved at artifacts\preprocessor.pkl
+[ 2025-11-06 20:53:26,236 ] 55 root - INFO - Data Transformation completed successfully
+[ 2025-11-06 20:53:26,237 ] 27 root - INFO - Model Training Started
+[ 2025-11-06 20:53:26,456 ] 34 root - INFO - Data shapes -> X_train: (5634, 10978), X_test: (1409, 10978)
+[ 2025-11-06 20:53:29,809 ] 65 root - ERROR - Error during model training
+Traceback (most recent call last):
+  File "C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\src\utils.py", line 31, in evaluate_models
+    prec = precision_score(y_test, y_pred, average='binary', zero_division=0)
+  File "C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\venv\Lib\site-packages\sklearn\utils\_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\venv\Lib\site-packages\sklearn\metrics\_classification.py", line 2524, in precision_score
+    p, _, _, _ = precision_recall_fscore_support(
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        y_true,
+        ^^^^^^^
+    ...<6 lines>...
+        zero_division=zero_division,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\venv\Lib\site-packages\sklearn\utils\_param_validation.py", line 191, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\venv\Lib\site-packages\sklearn\metrics\_classification.py", line 1996, in precision_recall_fscore_support
+    labels = _check_set_wise_labels(y_true, y_pred, average, labels, pos_label)
+  File "C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\venv\Lib\site-packages\sklearn\metrics\_classification.py", line 1770, in _check_set_wise_labels
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: pos_label=1 is not a valid label. It should be one of ['No', 'Yes']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\src\components\model_training.py", line 45, in initiate_model_training
+    model_report = evaluate_models(X_train, y_train, X_test, y_test, models)
+  File "C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\src\utils.py", line 45, in evaluate_models
+    raise CustomException(e, sys)
+src.exception.CustomException: Error occurred in python script name [C:\Users\giris\OneDrive\Documents\User-Churn-Prediction-System\src\utils.py] line number [31] error message [pos_label=1 is not a valid label. It should be one of ['No', 'Yes']]
