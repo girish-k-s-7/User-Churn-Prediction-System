@@ -7,18 +7,18 @@ from src.logger import logging
 
 
 def save_object(file_path, obj):
-    """Save Python object as a pickle file."""
+     
     try:
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, "wb") as f:
             pickle.dump(obj, f)
-        logging.info(f"✅ Object saved successfully at {file_path}")
+        logging.info(f" Object saved successfully at {file_path}")
     except Exception as e:
         raise CustomException(e, sys)
 
 
 def load_object(file_path):
-    """Load a pickled object."""
+  
     try:
         with open(file_path, "rb") as f:
             return pickle.load(f)
@@ -34,11 +34,11 @@ def evaluate_models(X_train, y_train, X_test, y_test, models: dict):
     report = {}
     try:
         for name, model in models.items():
-            logging.info(f"🚀 Training and evaluating model: {name}")
+            logging.info(f" Training and evaluating model: {name}")
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
 
-            # --- Detect positive label automatically ---
+            
             unique_labels = list(set(y_test))
 
             if "Yes" in unique_labels:
@@ -48,10 +48,10 @@ def evaluate_models(X_train, y_train, X_test, y_test, models: dict):
             elif True in unique_labels:
                 pos_label = True
             else:
-                # default to the last label (for safety)
+                
                 pos_label = unique_labels[-1]
 
-            # --- Compute metrics ---
+        
             metrics = {
                 "accuracy": accuracy_score(y_test, y_pred),
                 "precision": precision_score(y_test, y_pred, pos_label=pos_label, average='binary', zero_division=0)
@@ -63,10 +63,10 @@ def evaluate_models(X_train, y_train, X_test, y_test, models: dict):
             }
 
             report[name] = metrics
-            logging.info(f"✅ {name} → F1: {metrics['f1_score']:.4f} | Acc: {metrics['accuracy']:.4f}")
+            logging.info(f" {name} → F1: {metrics['f1_score']:.4f} | Acc: {metrics['accuracy']:.4f}")
 
         return report
 
     except Exception as e:
-        logging.error("❌ Error during model evaluation", exc_info=True)
+        logging.error(" Error during model evaluation", exc_info=True)
         raise CustomException(e, sys)
