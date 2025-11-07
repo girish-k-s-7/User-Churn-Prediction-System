@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 from src.logger import logging
@@ -27,46 +28,82 @@ class ModelTrainer:
         logging.info("Model Training Started")
 
         try:
-            # Convert to numpy arrays
             X_train, X_test = np.array(X_train), np.array(X_test)
             y_train, y_test = np.array(y_train), np.array(y_test)
 
-            logging.info(f"Data shapes -> X_train: {X_train.shape}, X_test: {X_test.shape}")
-
-            # Define candidate models
             models = {
                 "Logistic Regression": LogisticRegression(max_iter=1000),
                 "Decision Tree": DecisionTreeClassifier(random_state=42),
-                "Random Forest": RandomForestClassifier(n_estimators=100, random_state=42),
+                "Random Forest": RandomForestClassifier(random_state=42),
                 "Gradient Boosting": GradientBoostingClassifier(random_state=42)
             }
 
-            # Evaluate all models
+            # Step 1: Evaluate all models
             model_report = evaluate_models(X_train, y_train, X_test, y_test, models)
-            logging.info(f"Model Report: {model_report}")
-
-            # Select best model based on F1-score
             best_model_name = max(model_report, key=lambda x: model_report[x]['f1_score'])
             best_model = models[best_model_name]
-            best_metrics = model_report[best_model_name]
 
-            logging.info(f"Best Model: {best_model_name} | F1-Score: {best_metrics['f1_score']:.4f}")
+            logging.info(f"Base Best Model: {best_model_name} | F1: {model_report[best_model_name]['f1_score']:.4f}")
 
-            # Retrain best model on full data
-            best_model.fit(X_train, y_train)
+            # Step 2: Define hyperparameter grids
+            param_grids = {
+                "Logistic Regression": {
+                    "C": [0.1, 0.5, 1, 5, 10],
+                    "solver": ['liblinear', 'lbfgs']
+                },
+                "Decision Tree": {
+                    "max_depth": [3, 5, 7, 10, None],
+                    "min_samples_split": [2, 5, 10]
+                },
+                "Random Forest": {
+                    "n_estimators": [50, 100, 200],
+                    "max_depth": [5, 10, 20, None],
+                    "min_samples_split": [2, 5, 10]
+                },
+                "Gradient Boosting": {
+                    "n_estimators": [50, 100, 200],
+                    "learning_rate": [0.01, 0.05, 0.1, 0.2],
+                    "max_depth": [3, 5, 7]
+                }
+            }
 
-            # Save model
-            save_object(self.config.trained_model_path, best_model)
-            logging.info(f"Model saved at: {self.config.trained_model_path}")
+            # Step 3: Apply GridSearchCV on the best model
+            grid = GridSearchCV(
+                estimator=best_model,
+                param_grid=param_grids[best_model_name],
+                cv=3,
+                scoring='f1',
+                verbose=1,
+                n_jobs=-1
+            )
+            grid.fit(X_train, y_train)
 
-            return best_model_name, best_metrics
+            logging.info(f"Best Params for {best_model_name}: {grid.best_params_}")
+
+            # Step 4: Evaluate tuned model
+            tuned_model = grid.best_estimator_
+            y_pred = tuned_model.predict(X_test)
+
+            metrics = {
+                "accuracy": accuracy_score(y_test, y_pred),
+                "precision": precision_score(y_test, y_pred, pos_label='Yes'),
+                "recall": recall_score(y_test, y_pred, pos_label='Yes'),
+                "f1_score": f1_score(y_test, y_pred, pos_label='Yes')
+            }
+
+            # Step 5: Save tuned model
+            save_object(self.config.trained_model_path, tuned_model)
+            logging.info(f"Tuned model saved at: {self.config.trained_model_path}")
+
+            logging.info(f"Final Tuned Model: {best_model_name} | F1: {metrics['f1_score']:.4f}")
+            return best_model_name, metrics
 
         except Exception as e:
             logging.error("Error during model training", exc_info=True)
             raise CustomException(e, sys)
 
 
-# Test end-to-end pipeline
+# Test block
 if __name__ == "__main__":
     ingestion = DataIngestion()
     paths = ingestion.initiate_data_ingestion()
@@ -79,6 +116,6 @@ if __name__ == "__main__":
     trainer = ModelTrainer()
     best_model, metrics = trainer.initiate_model_training(X_train, X_test, y_train, y_test)
 
-    print("\n Training Completed!")
+    print("\n🏁 Hyperparameter Tuning Completed!")
     print(f"Best Model: {best_model}")
-    print("Metrics:", metrics)
+    print("Tuned Metrics:", metrics)

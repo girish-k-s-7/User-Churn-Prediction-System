@@ -12,13 +12,13 @@ def save_object(file_path, obj):
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         with open(file_path, "wb") as f:
             pickle.dump(obj, f)
-        logging.info(f" Object saved at {file_path}")
+        logging.info(f"✅ Object saved successfully at {file_path}")
     except Exception as e:
         raise CustomException(e, sys)
 
 
 def load_object(file_path):
-    """Load pickled object."""
+    """Load a pickled object."""
     try:
         with open(file_path, "rb") as f:
             return pickle.load(f)
@@ -27,11 +27,14 @@ def load_object(file_path):
 
 
 def evaluate_models(X_train, y_train, X_test, y_test, models: dict):
-     
+    """
+    Evaluate multiple models and return performance report.
+    Calculates accuracy, precision, recall, and F1-score for each model.
+    """
     report = {}
     try:
         for name, model in models.items():
-            logging.info(f" Training and evaluating model: {name}")
+            logging.info(f"🚀 Training and evaluating model: {name}")
             model.fit(X_train, y_train)
             y_pred = model.predict(X_test)
 
@@ -60,10 +63,10 @@ def evaluate_models(X_train, y_train, X_test, y_test, models: dict):
             }
 
             report[name] = metrics
-            logging.info(f"{name} → F1: {metrics['f1_score']:.4f} | Acc: {metrics['accuracy']:.4f}")
+            logging.info(f"✅ {name} → F1: {metrics['f1_score']:.4f} | Acc: {metrics['accuracy']:.4f}")
 
         return report
 
     except Exception as e:
-        logging.error(" Error during model evaluation", exc_info=True)
+        logging.error("❌ Error during model evaluation", exc_info=True)
         raise CustomException(e, sys)
