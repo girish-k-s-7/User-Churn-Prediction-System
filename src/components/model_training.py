@@ -116,6 +116,6 @@ if __name__ == "__main__":
     trainer = ModelTrainer()
     best_model, metrics = trainer.initiate_model_training(X_train, X_test, y_train, y_test)
 
-    print("\n🏁 Hyperparameter Tuning Completed!")
+    print("\n Hyperparameter Tuning Completed!")
     print(f"Best Model: {best_model}")
     print("Tuned Metrics:", metrics)
